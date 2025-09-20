@@ -4,23 +4,19 @@ module.exports = {
     '**/__tests__/**/*.+(ts|tsx|js)',
     '**/?(*.)+(spec|test).+(ts|tsx|js)',
   ],
-  preset: 'ts-jest/presets/default-esm',
-  extensionsToTreatAsEsm: ['.ts'],
+  preset: 'ts-jest',
   transform: {
-    '^.+\\.(j|t)s?$': ['ts-jest', {
-      useESM: true,
-    }],
+    '^.+\\.(j|t)s?$': 'ts-jest',
   },
   transformIgnorePatterns: ['node_modules/(?!(lit))'],
-  runner: 'jest-electron/runner',
-  testEnvironment: 'jest-electron/environment',
+  testEnvironment: 'jsdom',
   globals: {
     'ts-jest': {
-      useESM: true,
       tsconfig: {
         // allow js in typescript
         allowJs: true,
         rootDir: './',
+        module: 'commonjs',
       },
     },
   },
