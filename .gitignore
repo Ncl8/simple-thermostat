@@ -1,6 +1,6 @@
 node_modules
 *.min.js
-simple-thermostat.js
+dist/simple-thermostat.js
 .nvmrc
 build dist
 dist
