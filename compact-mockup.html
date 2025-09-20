@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compact Thermostat Card Mockup</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #111111;
+            color: #e1e1e1;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background: #1c1c1c;
+            border-radius: 12px;
+            padding: 16px;
+            width: 300px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .card-title {
+            font-size: 18px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .snowflake-icon {
+            color: #2b9af9;
+            font-size: 20px;
+        }
+
+        .comparison {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Current Layout */
+        .current .temp-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .current .current-temp {
+            font-size: 24px;
+            color: #e1e1e1;
+        }
+
+        .current .target-temp {
+            font-size: 32px;
+            font-weight: 300;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .current .temp-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .current .temp-btn {
+            background: transparent;
+            border: 1px solid #444;
+            color: #e1e1e1;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .current .temp-btn:hover {
+            border-color: #666;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .current .modes {
+            display: flex;
+            gap: 4px;
+            margin-top: 16px;
+        }
+
+        .current .mode-btn {
+            flex: 1;
+            padding: 12px 8px;
+            background: #333;
+            border: none;
+            color: #999;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .current .mode-btn.active {
+            background: #888;
+            color: #e1e1e1;
+        }
+
+        /* Compact Layout Options */
+        .compact .temp-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 8px 0;
+        }
+
+        .compact .current-temp {
+            font-size: 16px;
+            color: #999;
+            min-width: 80px;
+        }
+
+        .compact .target-temp-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .compact .target-temp {
+            font-size: 28px;
+            font-weight: 300;
+        }
+
+        .compact .temp-controls-inline {
+            display: flex;
+            gap: 6px;
+        }
+
+        .compact .temp-btn-small {
+            background: transparent;
+            border: 1px solid #444;
+            color: #e1e1e1;
+            padding: 6px 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .compact .temp-btn-small:hover {
+            border-color: #666;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .compact .modes-compact {
+            display: flex;
+            gap: 2px;
+            margin-top: 8px;
+        }
+
+        .compact .mode-btn-compact {
+            flex: 1;
+            padding: 8px 4px;
+            background: #333;
+            border: none;
+            color: #999;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .compact .mode-btn-compact.active {
+            background: #888;
+            color: #e1e1e1;
+        }
+
+        /* Ultra Compact */
+        .ultra-compact .temp-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 4px 0;
+        }
+
+        .ultra-compact .current-temp {
+            font-size: 14px;
+            color: #999;
+            min-width: 60px;
+        }
+
+        .ultra-compact .target-temp-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex: 1;
+            justify-content: flex-end;
+        }
+
+        .ultra-compact .target-temp {
+            font-size: 24px;
+            font-weight: 300;
+        }
+
+        .ultra-compact .temp-controls-mini {
+            display: flex;
+            gap: 4px;
+        }
+
+        .ultra-compact .temp-btn-mini {
+            background: transparent;
+            border: 1px solid #444;
+            color: #e1e1e1;
+            padding: 4px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .ultra-compact .temp-btn-mini:hover {
+            border-color: #666;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .ultra-compact .modes-mini {
+            display: flex;
+            gap: 1px;
+            margin-top: 4px;
+        }
+
+        .ultra-compact .mode-btn-mini {
+            flex: 1;
+            padding: 6px 2px;
+            background: #333;
+            border: none;
+            color: #999;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 10px;
+        }
+
+        .ultra-compact .mode-btn-mini.active {
+            background: #888;
+            color: #e1e1e1;
+        }
+
+        /* Horizontal Layout */
+        .horizontal .temp-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 8px 0;
+        }
+
+        .horizontal .temp-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .horizontal .current-temp {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .horizontal .target-temp {
+            font-size: 24px;
+            font-weight: 300;
+        }
+
+        .horizontal .temp-controls-side {
+            display: flex;
+            gap: 4px;
+        }
+
+        .horizontal .temp-btn-small {
+            background: transparent;
+            border: 1px solid #444;
+            color: #e1e1e1;
+            padding: 6px 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .horizontal .temp-btn-small:hover {
+            border-color: #666;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .horizontal .modes-horizontal {
+            display: flex;
+            gap: 2px;
+            margin-top: 6px;
+            height: 28px;
+        }
+
+        .horizontal .mode-btn-horizontal {
+            flex: 1;
+            padding: 0 6px;
+            background: #333;
+            border: none;
+            color: #999;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .horizontal .mode-btn-horizontal.active {
+            background: #888;
+            color: #e1e1e1;
+        }
+
+        h3 {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .description {
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        .fan-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            position: relative;
+        }
+
+        .fan-icon::before {
+            content: '✦';
+            font-size: 16px;
+            color: currentColor;
+        }
+    </style>
+</head>
+<body>
+    <h1>Compact Thermostat Card Mockups</h1>
+
+    <div class="comparison">
+        <!-- Current Layout -->
+        <div class="card current">
+            <h3>Current Layout</h3>
+            <div class="card-title">
+                <span class="snowflake-icon">❄️</span>
+                Hvac
+            </div>
+            <div class="temp-section">
+                <div class="current-temp">Currently: 22.0°C</div>
+                <div class="target-temp">21.0°C</div>
+                <div class="temp-controls">
+                    <button class="temp-btn">▲</button>
+                    <button class="temp-btn">▼</button>
+                </div>
+            </div>
+            <div class="modes">
+                <button class="mode-btn">
+                    <span>⏻</span>
+                </button>
+                <button class="mode-btn">
+                    <span>🔥</span>
+                </button>
+                <button class="mode-btn">
+                    <span>❄️</span>
+                </button>
+                <button class="mode-btn active">
+                    <span>✦</span>
+                </button>
+            </div>
+            <div class="description">Current height: ~120px with significant vertical spacing</div>
+        </div>
+
+        <!-- Compact Layout -->
+        <div class="card compact">
+            <h3>Compact Layout</h3>
+            <div class="card-title">
+                <span class="snowflake-icon">❄️</span>
+                Hvac
+            </div>
+            <div class="temp-section">
+                <div class="current-temp">22.0°C</div>
+                <div class="target-temp-group">
+                    <button class="temp-btn-small">−</button>
+                    <div class="target-temp">21.0°C</div>
+                    <button class="temp-btn-small">+</button>
+                </div>
+            </div>
+            <div class="modes-compact">
+                <button class="mode-btn-compact">⏻</button>
+                <button class="mode-btn-compact">🔥</button>
+                <button class="mode-btn-compact">❄️</button>
+                <button class="mode-btn-compact active">✦</button>
+            </div>
+            <div class="description">Target height: ~75px, right-aligned temp controls, no mode label, larger elements</div>
+        </div>
+
+        <!-- Ultra Compact -->
+        <div class="card ultra-compact">
+            <h3>Ultra Compact</h3>
+            <div class="card-title">
+                <span class="snowflake-icon">❄️</span>
+                Hvac
+            </div>
+            <div class="temp-section">
+                <div class="current-temp">22.0°C</div>
+                <div class="target-temp-group">
+                    <button class="temp-btn-mini">−</button>
+                    <div class="target-temp">21.0°C</div>
+                    <button class="temp-btn-mini">+</button>
+                </div>
+            </div>
+            <div class="modes-mini">
+                <button class="mode-btn-mini">⏻</button>
+                <button class="mode-btn-mini">🔥</button>
+                <button class="mode-btn-mini">❄️</button>
+                <button class="mode-btn-mini active">✦</button>
+            </div>
+            <div class="description">Target height: ~55px, no mode label, right-aligned temp controls</div>
+        </div>
+
+        <!-- Horizontal Layout -->
+        <div class="card horizontal">
+            <h3>Horizontal Layout</h3>
+            <div class="card-title">
+                <span class="snowflake-icon">❄️</span>
+                Hvac
+            </div>
+            <div class="temp-section">
+                <div class="temp-left">
+                    <div class="current-temp">Currently: 22.0°C</div>
+                    <div class="target-temp">21.0°C</div>
+                </div>
+                <div class="temp-controls-side">
+                    <button class="temp-btn-small">−</button>
+                    <button class="temp-btn-small">+</button>
+                </div>
+            </div>
+            <div class="modes-horizontal">
+                <button class="mode-btn-horizontal">⏻</button>
+                <button class="mode-btn-horizontal">🔥</button>
+                <button class="mode-btn-horizontal">❄️</button>
+                <button class="mode-btn-horizontal active">✦</button>
+            </div>
+            <div class="description">Target height: ~75px, side-by-side layout</div>
+        </div>
+    </div>
+
+    <div style="margin-top: 20px; padding: 16px; background: #2a2a2a; border-radius: 8px;">
+        <h3>Key Compact Design Strategies:</h3>
+        <ul style="color: #ccc; line-height: 1.6;">
+            <li><strong>Inline Temperature Controls:</strong> Move +/− buttons next to target temperature instead of stacked vertically</li>
+            <li><strong>Smaller Mode Buttons:</strong> Reduce height and padding of mode selection buttons</li>
+            <li><strong>Tighter Spacing:</strong> Reduce margins and padding between elements</li>
+            <li><strong>Horizontal Layout:</strong> Place current temp and target temp side-by-side</li>
+            <li><strong>Smaller Fonts:</strong> Use slightly smaller font sizes for secondary text</li>
+            <li><strong>Compact Mode Buttons:</strong> Use text labels instead of large icon buttons for modes</li>
+        </ul>
+    </div>
+</body>
+</html>

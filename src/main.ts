@@ -1,4 +1,5 @@
-import { LitElement, html, property } from 'lit-element'
+import { LitElement, html } from 'lit'
+import { property } from 'lit/decorators.js'
 import { nothing } from 'lit-html'
 import debounce from 'debounce-fn'
 import { name as CARD_NAME } from '../package.json'

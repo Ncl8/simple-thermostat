@@ -138,11 +138,50 @@ header {
     flex-direction: row-reverse;
   }
 }
+
+.current-wrapper > ha-icon-button:first-child {
+  margin-bottom: calc(var(--st-spacing, var(--st-default-spacing)) * 2) !important;
+}
+
+.current-wrapper > ha-icon-button:last-child {
+  margin-top: calc(var(--st-spacing, var(--st-default-spacing)) * 2) !important;
+}
+
+.current-wrapper > h3 {
+  margin: 0 !important;
+}
+/* Force override all h3 elements in the card - match current temp size */
+:host h3,
+ha-card h3,
+.current-wrapper h3,
+h3.current--value,
+h3 {
+  font-weight: normal !important;
+  font-size: var(--paper-font-subhead_-_font-size, 16px) !important;
+  line-height: var(--paper-font-subhead_-_font-size, 16px) !important;
+  margin: calc(var(--st-spacing, var(--st-default-spacing)) / 2) 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Updating state */
+:host h3.updating,
+ha-card h3.updating,
+.current-wrapper h3.updating,
+h3.current--value.updating,
+h3.updating {
+  color: var(--error-color) !important;
+  font-weight: normal !important;
+  font-size: var(--paper-font-subhead_-_font-size, 16px) !important;
+  line-height: var(--paper-font-subhead_-_font-size, 16px) !important;
+}
+
+/* Legacy class for other temperature displays */
 .current--value {
   display: flex;
   align-items: center;
   margin: 0;
-  font-weight: 400;
+  font-weight: 300;
   line-height: var(--st-font-size-l, var(--paper-font-display1_-_font-size));
   font-size: var(--st-font-size-l, var(--paper-font-display1_-_font-size));
   @media (--vp-m) {
@@ -159,6 +198,7 @@ header {
 }
 .thermostat-trigger {
   padding: 0px;
+  margin: calc(var(--st-spacing, var(--st-default-spacing)) / 2) 0 !important;
 }
 .clickable {
   cursor: pointer;
@@ -167,16 +207,16 @@ header {
   display: grid;
   grid-template-columns: auto;
   grid-auto-flow: column;
-  grid-gap: 2px;
+  grid-gap: calc(var(--st-spacing, var(--st-default-spacing)) * 1.5);
   margin-top: calc(var(--st-spacing, var(--st-default-spacing)) * 2);
-  padding: var(--st-spacing, var(--st-default-spacing));
+  padding: var(--st-spacing, var(--st-default-spacing)) 16px;
 
   &.heading {
     grid-template-columns: min-content;
   }
 }
 .mode-title {
-  padding: 0 16px;
+  padding: 0 12px 0 0;
   place-self: center;
   font-size: var(
     --st-font-size-sensors,
@@ -192,7 +232,7 @@ header {
   text-align: center;
   justify-content: center;
   min-height: 24px;
-  padding: var(--st-spacing, var(--st-default-spacing)) 0;
+  padding: calc(var(--st-spacing, var(--st-default-spacing)) * 2) 0;
   background: var(--st-mode-background, var(--secondary-background-color));
   color: var(--secondary-text-color);
   cursor: pointer;
