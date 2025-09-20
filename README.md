@@ -32,7 +32,7 @@ It offers more flexibility and features as well as a number of bug fixes.
 
 ## Requirements
 
-Home Assistant 0.84 or higher
+Home Assistant 2024.1.0 or higher
 
 ## Installation
 
@@ -318,3 +318,14 @@ style: |
   }
   ...
 ```
+
+## Development
+
+### Building
+
+```bash
+yarn install
+yarn build
+```
+
+This generates `simple-thermostat.js` in the root directory for HACS compatibility.
