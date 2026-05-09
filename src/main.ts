@@ -176,12 +176,12 @@ export default class SimpleThermostat extends LitElement {
   }
 
   set hass(hass: any) {
-    if (!this.config.entity) {
+    if (!this.config?.entity) {
       return
     }
 
     const entity = hass.states[this.config.entity]
-    if (typeof entity === undefined) {
+    if (!entity) {
       return
     }
 
@@ -341,16 +341,17 @@ export default class SimpleThermostat extends LitElement {
   }
 
   localize = (label: string, prefix = '') => {
-    const lang = this._hass.selectedLanguage || this._hass.language
     const key = `${prefix}${label}`
-    const translations = this._hass.resources[lang]
-
-    return translations?.[key] ?? label
+    return this._hass?.localize?.(key) || label
   }
 
   render({ _hide, _values, _updatingValues, config, entity } = this) {
+    if (!config) {
+      return html``
+    }
+
     const warnings = []
-    if (this.stepSize < 1 && this.config.decimals === 0) {
+    if (this.stepSize < 1 && config.decimals === 0) {
       warnings.push(html`
         <hui-warning>
           Decimals is set to 0 and step_size is lower than 1. Decrementing a
@@ -437,9 +438,9 @@ export default class SimpleThermostat extends LitElement {
 
                 <h3
                   @click=${() => this.openEntityPopover()}
-                  class="current--value ${_updatingValues
-                    ? 'updating'
-                    : nothing}"
+                  class=${_updatingValues
+                    ? 'current--value updating'
+                    : 'current--value'}
                 >
                   ${formatNumber(value, config)}
                   ${showUnit
