@@ -1,0 +1,4 @@
+dist
+simple-thermostat.js
+node_modules
+yarn.lock

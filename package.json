@@ -61,12 +61,8 @@
     "size-build": "yarn build",
     "size": "size-limit",
     "analyze": "size-limit --why",
-    "semantic-release": "semantic-release"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
+    "semantic-release": "semantic-release",
+    "prepare": "husky"
   },
   "prettier": {
     "printWidth": 80,
